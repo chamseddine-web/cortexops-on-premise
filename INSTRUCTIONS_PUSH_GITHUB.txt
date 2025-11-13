@@ -1,0 +1,163 @@
+═══════════════════════════════════════════════════════════════
+  🚀 INSTRUCTIONS POUR POUSSER VERS GITHUB
+═══════════════════════════════════════════════════════════════
+
+📍 Dépôt GitHub : https://github.com/chamseddine-web/cortexops-on-premise
+
+Actuellement sur GitHub :
+  • 2 commits seulement
+  • 72 fichiers (il en manque 205 !)
+  • Les fichiers Mistral AI ne sont PAS encore poussés
+
+═══════════════════════════════════════════════════════════════
+  ⚡ MÉTHODE RAPIDE (Depuis votre machine locale)
+═══════════════════════════════════════════════════════════════
+
+1️⃣  Téléchargez ce projet complet sur votre machine
+    (Tous les fichiers du répertoire actuel)
+
+2️⃣  Ouvrez un terminal dans ce dossier
+
+3️⃣  Créez un token GitHub :
+    → https://github.com/settings/tokens/new
+    → Nom : "CortexOps Push"
+    → Permissions : Cochez "repo" (tout)
+    → Generate token
+    → COPIEZ LE TOKEN (vous ne le reverrez plus !)
+
+4️⃣  Exécutez ces commandes :
+
+cd /chemin/vers/votre/projet
+
+# Vérifiez que tous les fichiers sont là
+ls -la | wc -l
+# Devrait afficher environ 277
+
+# Initialisez git
+git init
+
+# Configurez votre identité
+git config user.name "chamseddine-web"
+git config user.email "votre@email.com"
+
+# Ajoutez tous les fichiers
+git add .
+
+# Vérifiez ce qui va être commité
+git status
+
+# Créez le commit
+git commit -m "feat: Intégration complète Mistral AI + 8 Edge Functions
+
+✨ Nouvelles fonctionnalités:
+- Support complet Mistral AI (6 modèles)
+- AIModelSelector + AIModelStats composants
+- Hook useAIModel pour intégration facile
+- Service AI unifié (Mistral/OpenAI/Ollama)
+- 8 Supabase Edge Functions
+- 46 migrations de base de données
+
+🐛 Correctifs:
+- Erreur YAML ligne 85 résolue
+- Génération conditions de rôles fixée
+- Syntaxe YAML améliorée
+
+📚 Documentation:
+- MISTRAL_INTEGRATION.md (38 pages)
+- MISTRAL_QUICK_START.md
+- AI_MODEL_DECISION_TREE.md
+- PUSH_TO_GITHUB.md"
+
+# Ajoutez le remote GitHub
+git remote add origin https://github.com/chamseddine-web/cortexops-on-premise.git
+
+# Changez en branche main
+git branch -M main
+
+# OPTION A : Écrasez complètement le dépôt GitHub (Recommandé)
+git push -f origin main
+
+# OPTION B : Fusionnez avec l'existant
+git pull origin main --allow-unrelated-histories
+git push origin main
+
+5️⃣  Quand demandé :
+    Username: chamseddine-web
+    Password: COLLEZ_VOTRE_TOKEN_ICI
+
+═══════════════════════════════════════════════════════════════
+  🔐 MÉTHODE ALTERNATIVE : SSH
+═══════════════════════════════════════════════════════════════
+
+Si vous avez déjà une clé SSH configurée :
+
+git remote add origin git@github.com:chamseddine-web/cortexops-on-premise.git
+git branch -M main
+git push -f origin main
+
+═══════════════════════════════════════════════════════════════
+  ✅ VÉRIFICATION APRÈS LE PUSH
+═══════════════════════════════════════════════════════════════
+
+Allez sur GitHub et vérifiez que vous voyez :
+
+Nouveaux fichiers Mistral AI :
+  ✓ MISTRAL_INTEGRATION.md
+  ✓ MISTRAL_QUICK_START.md
+  ✓ AI_MODEL_DECISION_TREE.md
+  ✓ src/lib/aiService.ts
+  ✓ src/lib/aiModelConfig.ts
+  ✓ src/hooks/useAIModel.ts
+  ✓ src/components/AIModelSelector.tsx
+  ✓ src/components/AIModelStats.tsx
+
+Edge Functions Supabase :
+  ✓ supabase/functions/contact-notification/
+  ✓ supabase/functions/create-stripe-checkout/
+  ✓ supabase/functions/generate-playbook-api/
+  ✓ supabase/functions/stripe-webhook/
+  ✓ supabase/functions/welcome-email/
+  ✓ supabase/functions/webhook-relay/
+  ✓ supabase/functions/create-mollie-payment/
+  ✓ supabase/functions/mollie-webhook/
+
+Migrations Supabase :
+  ✓ 46 fichiers .sql dans supabase/migrations/
+
+Total attendu : ~277 fichiers
+
+═══════════════════════════════════════════════════════════════
+  ❓ PROBLÈMES COURANTS
+═══════════════════════════════════════════════════════════════
+
+"Authentication failed"
+→ Utilisez le TOKEN, pas votre mot de passe GitHub
+
+"remote origin already exists"
+→ git remote remove origin
+→ Puis recommencez
+
+"refusing to merge unrelated histories"
+→ Utilisez git push -f origin main (écrase tout)
+
+═══════════════════════════════════════════════════════════════
+  📊 RÉSUMÉ DES CHANGEMENTS
+═══════════════════════════════════════════════════════════════
+
+Avant le push :
+  • 2 commits
+  • 72 fichiers
+  • Pas de Mistral AI
+
+Après le push :
+  • 3 commits (ou 1 si force push)
+  • 277 fichiers
+  • Intégration Mistral AI complète
+  • 8 Edge Functions
+  • 46 Migrations DB
+  • Documentation exhaustive
+
+═══════════════════════════════════════════════════════════════
+
+📧 Une fois poussé, tous vos fichiers seront sur GitHub !
+

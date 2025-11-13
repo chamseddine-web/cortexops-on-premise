@@ -1,0 +1,283 @@
+{
+  "name": "cortexops-ansible-generator",
+  "displayName": "CortexOps Ansible Generator",
+  "description": "Generate Ansible playbooks with AI directly in VSCode",
+  "version": "1.0.0",
+  "publisher": "cortexops",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters",
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "ansible",
+    "automation",
+    "devops",
+    "playbook",
+    "ai",
+    "generator",
+    "infrastructure",
+    "yaml"
+  ],
+  "activationEvents": [
+    "onLanguage:yaml",
+    "onCommand:cortexops.generatePlaybook",
+    "onCommand:cortexops.generateFromSelection",
+    "onCommand:cortexops.validatePlaybook"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cortexops.generatePlaybook",
+        "title": "CortexOps: Generate Playbook",
+        "category": "CortexOps"
+      },
+      {
+        "command": "cortexops.generateFromSelection",
+        "title": "CortexOps: Generate from Selection",
+        "category": "CortexOps"
+      },
+      {
+        "command": "cortexops.generateRole",
+        "title": "CortexOps: Generate Role",
+        "category": "CortexOps"
+      },
+      {
+        "command": "cortexops.validatePlaybook",
+        "title": "CortexOps: Validate Current File",
+        "category": "CortexOps"
+      },
+      {
+        "command": "cortexops.formatPlaybook",
+        "title": "CortexOps: Format Playbook",
+        "category": "CortexOps"
+      },
+      {
+        "command": "cortexops.deployPlaybook",
+        "title": "CortexOps: Deploy Playbook",
+        "category": "CortexOps"
+      },
+      {
+        "command": "cortexops.showHistory",
+        "title": "CortexOps: Show History",
+        "category": "CortexOps"
+      },
+      {
+        "command": "cortexops.exportToGit",
+        "title": "CortexOps: Export to Git",
+        "category": "CortexOps"
+      },
+      {
+        "command": "cortexops.showStats",
+        "title": "CortexOps: Show Statistics",
+        "category": "CortexOps"
+      },
+      {
+        "command": "cortexops.openDocs",
+        "title": "CortexOps: Open Documentation",
+        "category": "CortexOps"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "cortexops.generatePlaybook",
+        "key": "ctrl+alt+g",
+        "mac": "cmd+alt+g",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "cortexops.generateFromSelection",
+        "key": "ctrl+alt+shift+g",
+        "mac": "cmd+alt+shift+g",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "cortexops.validatePlaybook",
+        "key": "ctrl+alt+v",
+        "mac": "cmd+alt+v",
+        "when": "resourceExtname == .yml || resourceExtname == .yaml"
+      },
+      {
+        "command": "cortexops.formatPlaybook",
+        "key": "ctrl+alt+f",
+        "mac": "cmd+alt+f",
+        "when": "resourceExtname == .yml || resourceExtname == .yaml"
+      },
+      {
+        "command": "cortexops.deployPlaybook",
+        "key": "ctrl+alt+d",
+        "mac": "cmd+alt+d",
+        "when": "resourceExtname == .yml || resourceExtname == .yaml"
+      }
+    ],
+    "configuration": {
+      "title": "CortexOps",
+      "properties": {
+        "cortexops.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "CortexOps API key",
+          "order": 1
+        },
+        "cortexops.apiUrl": {
+          "type": "string",
+          "default": "https://api.cortexops.com/v1",
+          "description": "API endpoint URL",
+          "order": 2
+        },
+        "cortexops.defaultEnvironment": {
+          "type": "string",
+          "default": "production",
+          "enum": ["development", "staging", "production"],
+          "description": "Default target environment",
+          "order": 3
+        },
+        "cortexops.autoValidate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto-validate generated playbooks",
+          "order": 4
+        },
+        "cortexops.autoFormat": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto-format generated playbooks",
+          "order": 5
+        },
+        "cortexops.showPreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show preview before inserting",
+          "order": 6
+        },
+        "cortexops.enableSnippets": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Ansible snippets",
+          "order": 7
+        },
+        "cortexops.lintOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Lint playbooks on save",
+          "order": 8
+        },
+        "cortexops.gitIntegration": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable Git integration",
+          "order": 9
+        },
+        "cortexops.gitRepo": {
+          "type": "string",
+          "default": "",
+          "description": "Git repository URL",
+          "order": 10
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "cortexops.generateFromSelection",
+          "group": "cortexops@1"
+        },
+        {
+          "when": "resourceExtname == .yml || resourceExtname == .yaml",
+          "command": "cortexops.validatePlaybook",
+          "group": "cortexops@2"
+        },
+        {
+          "when": "resourceExtname == .yml || resourceExtname == .yaml",
+          "command": "cortexops.deployPlaybook",
+          "group": "cortexops@3"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "cortexops.generatePlaybook"
+        },
+        {
+          "command": "cortexops.generateFromSelection",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "cortexops.validatePlaybook",
+          "when": "resourceExtname == .yml || resourceExtname == .yaml"
+        },
+        {
+          "command": "cortexops.deployPlaybook",
+          "when": "resourceExtname == .yml || resourceExtname == .yaml"
+        }
+      ]
+    },
+    "snippets": [
+      {
+        "language": "yaml",
+        "path": "./snippets/ansible.json"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "cortexops",
+          "title": "CortexOps",
+          "icon": "images/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "cortexops": [
+        {
+          "id": "cortexopsHistory",
+          "name": "Generation History"
+        },
+        {
+          "id": "cortexopsTemplates",
+          "name": "Templates"
+        },
+        {
+          "id": "cortexopsStats",
+          "name": "Statistics"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/test-electron": "^2.3.0",
+    "typescript": "^5.0.0",
+    "@vscode/vsce": "^2.19.0"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "js-yaml": "^4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cortexops/vscode-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cortexops/vscode-extension/issues"
+  },
+  "homepage": "https://cortexops.com",
+  "license": "MIT"
+}

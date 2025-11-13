@@ -1,0 +1,50 @@
+{
+  "name": "@cortexops/cli",
+  "version": "1.0.0",
+  "description": "CortexOps CLI - Generate Ansible playbooks with AI",
+  "main": "bin/cortexops.cjs",
+  "bin": {
+    "cortexops": "./bin/cortexops.cjs"
+  },
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ansible",
+    "automation",
+    "devops",
+    "infrastructure",
+    "ai",
+    "playbook",
+    "cli",
+    "cortexops"
+  ],
+  "author": "CortexOps Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cortexops/cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cortexops/cli/issues"
+  },
+  "homepage": "https://cortexops.com",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "inquirer": "^8.2.5",
+    "node-fetch": "^2.7.0",
+    "js-yaml": "^4.1.0"
+  },
+  "files": [
+    "bin/",
+    "cli/",
+    "README.md",
+    "LICENSE"
+  ]
+}

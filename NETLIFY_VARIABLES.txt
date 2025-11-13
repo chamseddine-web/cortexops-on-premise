@@ -1,0 +1,58 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║         VARIABLES D'ENVIRONNEMENT POUR NETLIFY                ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+À ajouter dans Netlify avant le déploiement :
+Netlify → Site settings → Environment variables → Add variable
+
+─────────────────────────────────────────────────────────────────
+
+Variable 1 :
+───────────
+
+Key:
+VITE_SUPABASE_URL
+
+Value:
+https://pkvfnmmnfwfxnwojycmp.supabase.co
+
+─────────────────────────────────────────────────────────────────
+
+Variable 2 :
+───────────
+
+Key:
+VITE_SUPABASE_ANON_KEY
+
+Value:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBrdmZubW1uZndmeG53b2p5Y21wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI4NzgwMDEsImV4cCI6MjA3ODQ1NDAwMX0.mR2AvsZGPl3qbDDU74fbhzS5fb83ZgozTWDK5OASMXE
+
+─────────────────────────────────────────────────────────────────
+
+⚠️  IMPORTANT :
+• Ajouter AVANT le premier déploiement
+• Copier les valeurs EXACTEMENT (pas d'espaces)
+• La ANON_KEY est longue - copier entièrement
+
+✅ Une fois ajoutées, vous pouvez déployer !
+
+─────────────────────────────────────────────────────────────────
+
+Configuration Supabase (après déploiement) :
+────────────────────────────────────────────
+
+https://supabase.com/dashboard
+→ Votre projet
+→ Authentication → URL Configuration
+
+Site URL:
+https://votre-site.netlify.app
+
+Redirect URLs:
+https://votre-site.netlify.app/**
+
+(Remplacer "votre-site" par votre URL Netlify réelle)
+
+─────────────────────────────────────────────────────────────────

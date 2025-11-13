@@ -1,0 +1,234 @@
+{
+  "Ansible Task": {
+    "prefix": "ansible-task",
+    "body": [
+      "- name: ${1:Task description}",
+      "  ${2:module}:",
+      "    ${3:parameter}: ${4:value}"
+    ],
+    "description": "Basic Ansible task"
+  },
+  "Ansible Shell": {
+    "prefix": "ansible-shell",
+    "body": [
+      "- name: ${1:Execute command}",
+      "  shell: |",
+      "    ${2:command}",
+      "  register: ${3:result}",
+      "  changed_when: false"
+    ],
+    "description": "Shell command task"
+  },
+  "Ansible Copy": {
+    "prefix": "ansible-copy",
+    "body": [
+      "- name: ${1:Copy file}",
+      "  copy:",
+      "    src: ${2:source}",
+      "    dest: ${3:destination}",
+      "    mode: '${4:0644}'",
+      "    owner: ${5:root}",
+      "    group: ${6:root}"
+    ],
+    "description": "Copy file task"
+  },
+  "Ansible Template": {
+    "prefix": "ansible-template",
+    "body": [
+      "- name: ${1:Template file}",
+      "  template:",
+      "    src: ${2:template.j2}",
+      "    dest: ${3:destination}",
+      "    mode: '${4:0644}'"
+    ],
+    "description": "Template task"
+  },
+  "Ansible Service": {
+    "prefix": "ansible-service",
+    "body": [
+      "- name: ${1:Manage service}",
+      "  service:",
+      "    name: ${2:service_name}",
+      "    state: ${3|started,stopped,restarted,reloaded|}",
+      "    enabled: ${4|yes,no|}"
+    ],
+    "description": "Service management task"
+  },
+  "Ansible Package": {
+    "prefix": "ansible-package",
+    "body": [
+      "- name: ${1:Install package}",
+      "  ${2|apt,yum,dnf,package|}:",
+      "    name: ${3:package_name}",
+      "    state: ${4|present,latest,absent|}"
+    ],
+    "description": "Package management task"
+  },
+  "Ansible Handler": {
+    "prefix": "ansible-handler",
+    "body": [
+      "- name: ${1:Handler name}",
+      "  ${2:service}:",
+      "    name: ${3:service_name}",
+      "    state: ${4:restarted}"
+    ],
+    "description": "Ansible handler"
+  },
+  "Ansible Block": {
+    "prefix": "ansible-block",
+    "body": [
+      "- name: ${1:Block description}",
+      "  block:",
+      "    - name: ${2:Task 1}",
+      "      ${3:module}:",
+      "        ${4:parameter}: ${5:value}",
+      "  rescue:",
+      "    - name: ${6:Rescue task}",
+      "      debug:",
+      "        msg: \"${7:Error occurred}\"",
+      "  always:",
+      "    - name: ${8:Always task}",
+      "      debug:",
+      "        msg: \"${9:This always runs}\""
+    ],
+    "description": "Block with rescue and always"
+  },
+  "Ansible Loop": {
+    "prefix": "ansible-loop",
+    "body": [
+      "- name: ${1:Task with loop}",
+      "  ${2:module}:",
+      "    ${3:parameter}: \"{{ item }}\"",
+      "  loop:",
+      "    - ${4:item1}",
+      "    - ${5:item2}"
+    ],
+    "description": "Task with loop"
+  },
+  "Ansible When": {
+    "prefix": "ansible-when",
+    "body": [
+      "- name: ${1:Conditional task}",
+      "  ${2:module}:",
+      "    ${3:parameter}: ${4:value}",
+      "  when: ${5:condition}"
+    ],
+    "description": "Task with condition"
+  },
+  "Ansible Playbook": {
+    "prefix": "ansible-playbook",
+    "body": [
+      "---",
+      "- name: ${1:Playbook description}",
+      "  hosts: ${2:all}",
+      "  become: ${3|yes,no|}",
+      "  gather_facts: ${4|yes,no|}",
+      "  ",
+      "  vars:",
+      "    ${5:variable}: ${6:value}",
+      "  ",
+      "  tasks:",
+      "    - name: ${7:First task}",
+      "      ${8:module}:",
+      "        ${9:parameter}: ${10:value}"
+    ],
+    "description": "Complete playbook structure"
+  },
+  "Ansible Role": {
+    "prefix": "ansible-role",
+    "body": [
+      "- name: ${1:Apply role}",
+      "  hosts: ${2:all}",
+      "  become: yes",
+      "  ",
+      "  roles:",
+      "    - ${3:role_name}"
+    ],
+    "description": "Playbook with role"
+  },
+  "Ansible Vault": {
+    "prefix": "ansible-vault",
+    "body": [
+      "${1:variable}: !vault |",
+      "  \\$ANSIBLE_VAULT;1.1;AES256",
+      "  ${2:encrypted_content}"
+    ],
+    "description": "Vault encrypted variable"
+  },
+  "Ansible Debug": {
+    "prefix": "ansible-debug",
+    "body": [
+      "- name: ${1:Debug message}",
+      "  debug:",
+      "    msg: \"${2:message}\"",
+      "    var: ${3:variable}"
+    ],
+    "description": "Debug task"
+  },
+  "Ansible Set Fact": {
+    "prefix": "ansible-fact",
+    "body": [
+      "- name: ${1:Set fact}",
+      "  set_fact:",
+      "    ${2:fact_name}: ${3:value}"
+    ],
+    "description": "Set fact task"
+  },
+  "Ansible Include": {
+    "prefix": "ansible-include",
+    "body": [
+      "- name: ${1:Include tasks}",
+      "  include_tasks: ${2:tasks.yml}",
+      "  when: ${3:condition}"
+    ],
+    "description": "Include tasks"
+  },
+  "Ansible Import": {
+    "prefix": "ansible-import",
+    "body": [
+      "- name: ${1:Import tasks}",
+      "  import_tasks: ${2:tasks.yml}"
+    ],
+    "description": "Import tasks"
+  },
+  "Ansible Meta": {
+    "prefix": "ansible-meta",
+    "body": [
+      "- name: ${1:Meta task}",
+      "  meta: ${2|flush_handlers,refresh_inventory,clear_facts,clear_host_errors,end_play|}"
+    ],
+    "description": "Meta task"
+  },
+  "Ansible Assert": {
+    "prefix": "ansible-assert",
+    "body": [
+      "- name: ${1:Assert condition}",
+      "  assert:",
+      "    that:",
+      "      - ${2:condition}",
+      "    fail_msg: \"${3:Failure message}\"",
+      "    success_msg: \"${4:Success message}\""
+    ],
+    "description": "Assert task"
+  },
+  "Ansible Wait For": {
+    "prefix": "ansible-wait",
+    "body": [
+      "- name: ${1:Wait for condition}",
+      "  wait_for:",
+      "    ${2|host,port,path,timeout|}: ${3:value}",
+      "    state: ${4|started,stopped,present,absent,drained|}"
+    ],
+    "description": "Wait for task"
+  },
+  "Ansible Notify": {
+    "prefix": "ansible-notify",
+    "body": [
+      "- name: ${1:Task with notification}",
+      "  ${2:module}:",
+      "    ${3:parameter}: ${4:value}",
+      "  notify: ${5:handler_name}"
+    ],
+    "description": "Task with notify"
+  }
+}
